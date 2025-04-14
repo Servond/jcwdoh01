@@ -1,6 +1,8 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { ArrowPathIcon } from "@heroicons/react/16/solid";
+import { useContext } from "react";
+import AuthContext from "@/context/authContext";
 
 const menus = [
   {
@@ -28,9 +30,35 @@ const menus = [
     path: "/use-reducer",
     icon: <ArrowPathIcon className="size-6" />,
   },
+  {
+    label: "Use Callback",
+    path: "/use-callback",
+    icon: <ArrowPathIcon className="size-6" />,
+  },
+  {
+    label: "Custom Hook",
+    path: "/custom-hook",
+    icon: <ArrowPathIcon className="size-6" />,
+  },
+  {
+    label: "Global State",
+    path: "/global-state",
+    icon: <ArrowPathIcon className="size-6" />,
+  },
+  {
+    label: "Local State",
+    path: "/local-state",
+    icon: <ArrowPathIcon className="size-6" />,
+  },
+  {
+    label: "Login",
+    path: "/login",
+    icon: <ArrowPathIcon className="size-6" />,
+  },
 ];
 
 export default function SideBar() {
+  const { user, logout } = useContext(AuthContext);
   const router = useRouter();
 
   const onMenuItemClick = (path: string) => () => {
@@ -41,7 +69,7 @@ export default function SideBar() {
     <div className="p-10 w-[25rem] h-screen bg-gray-500 text-center cursor-pointer">
       <ul>
         <div className="text-4xl mb-10" onClick={onMenuItemClick("/")}>
-          LOGO
+          Hello, {user.email}
         </div>
         {menus.map((menu, idx) => (
           <div
@@ -54,6 +82,9 @@ export default function SideBar() {
           </div>
         ))}
       </ul>
+      <button className="standard-button" onClick={logout}>
+        Logout
+      </button>
     </div>
   );
 }
