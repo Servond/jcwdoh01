@@ -4,6 +4,7 @@ import "./globals.css";
 
 import AuthProvider from "@/components/authProvider";
 import SideBar from "@/components/sidebar";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script src="sweetalert2.all.min.js"></Script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-row`}
       >
